@@ -1,11 +1,8 @@
-//current size - continuously updated
+
 float size = 10;
-//minimum size
 float minSize = 10;
-//maximum size
 float maxSize = 500;
-//change speed for size (how much will the size increase/decrease each frame)
-float sizeSpeed = 2;
+float sizeSpeed = 2; //how fast grow expands and contracts
 float[] randosSize = new float[20];
 float[] randosX = new float[20];
 float[] randosY = new float[20];
@@ -18,18 +15,16 @@ PFont font;
  
 void circ(){
 
-   //if the size is either too small, or too big, flip the size speed sign (if it was positive (growing) - make it negative (shrink) - and vice versa)
+   //flip the size speed sign to change growth direction
   if( size > maxSize) {
     sizeSpeed *= -1;
     stopSize = 11;
-
-
   }
-  //increment the size with the size speed (be it positive or negative)
+ 
   size += sizeSpeed;
 
  
-    if (size <= stopSize){
+   if (size <= stopSize){
       grow = false;
       print("grow :circ" + grow);
       fly = true;
@@ -38,8 +33,6 @@ void circ(){
       //randos();
       //grow = true;
     }  
-    
-
 }
 
 
@@ -51,11 +44,11 @@ void flyTime(){
      fill(36, 162, 216);
      noStroke();
 
-       ellipse(randosX[0], randosY[0], randosSize[0], randosSize[0]);
-       ellipse(randosX[1], randosY[1], randosSize[1], randosSize[1]);
-       ellipse(randosX[2], randosY[2], randosSize[2], randosSize[2]);
-       ellipse(randosX[3], randosY[3], randosSize[3], randosSize[3]);
-       ellipse(randosX[4], randosY[4], randosSize[4], randosSize[4]);
+      ellipse(randosX[0], randosY[0], randosSize[0], randosSize[0]);
+      ellipse(randosX[1], randosY[1], randosSize[1], randosSize[1]);
+      ellipse(randosX[2], randosY[2], randosSize[2], randosSize[2]);
+      ellipse(randosX[3], randosY[3], randosSize[3], randosSize[3]);
+      ellipse(randosX[4], randosY[4], randosSize[4], randosSize[4]);
        ellipse(randosX[5], randosY[5], randosSize[5], randosSize[5]);
        ellipse(randosX[6], randosY[6], randosSize[6], randosSize[6]);
        ellipse(randosX[7], randosY[7], randosSize[7], randosSize[7]);
@@ -80,20 +73,10 @@ void flyTime(){
         print("fly: flittime" + fly);
         grow = true;
         print ("grow: flytime" + grow);
-      }
-   
-   
+      } 
    }
-     
- 
 }
   
-
- 
-
-  
-  
-
 void setup(){
   fullScreen();
   randos();
@@ -114,31 +97,16 @@ void draw(){
      background(252, 251, 254); 
    
    if(grow == true){
-    
-   
     circ();
-   fill(213, 119, 46);
-   ellipse(625, 450, size,size);
-   
-   
-   //textSize(70);
-   fill(0);
-   text(breathe, 450, 100);
-   
+    fill(213, 119, 46);
+    ellipse(625, 450, size,size);
+    fill(0);
+    text(breathe, 450, 100);
    }
    if (fly == true){
      flyTime();
      
-   }
-  
-   
-   
-   
-    
-
-
-     
-      
+   }    
 }
 
 
