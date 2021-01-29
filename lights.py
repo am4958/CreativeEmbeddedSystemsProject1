@@ -9,7 +9,6 @@ import neopixel
 import json
 import requests
 from datetime import datetime, timedelta
-import time
 pixels = neopixel.NeoPixel(board.D18,8)
 num_pixels = 8
 
@@ -48,10 +47,10 @@ def rainbow_cycle(wait):
 
 ####end from neo pixels site https://learn.adafruit.com/neopixels-on-raspberry-pi/python-usage
 
-###found this method to help print json nicer on https://www.dataquest.io/blog/python-api-tutorial/
-def jprint(obj):
-	text = json.dumps(obj, sort_keys=True, indent = 4) ####REMOVE LATER
-	print(text)
+###found this method to help print json nicer on https://www.dataquest.io/blog/python-api-tutorial/ Great for testing code
+#def jprint(obj):
+#	text = json.dumps(obj, sort_keys=True, indent = 4) ####REMOVE LATER
+#	print(text)
 ###ends here
 
 def ledtimebb():
@@ -60,30 +59,14 @@ def ledtimebb():
 	jprint(data) 				
 	
 	timestamp = data['response'][0]['risetime'] ##get rise time
-	##TEST SPOT
 	above = data['response'][0]['duration'] ## get duration
-	print('above')
-	print(above)
-	print(type(above))
-
-	utctime = datetime.utcfromtimestamp(timestamp) #get UTC time of risetime for iss
-
-	print('utctime')
-	print(utctime)
-
-	curtime = datetime.utcnow() #get current UTC time
-
-	print('curtime')
-	print( curtime)
 	
-	countdown =  utctime - curtime #time until iss is overhead
-	print('countdown')
-	print(countdown)
-	
+	utctime = datetime.utcfromtimestamp(timestamp) #get UTC time of risetime for ISS
+	curtime = datetime.utcnow() #get current UTC time	
+	countdown =  utctime - curtime #time until ISS is overhead
 	seconds =  countdown.seconds #take number of seconds until iss overhead from timedelta
 	
-	print('seconds')
-	print(seconds)
+
 	
 	minutes = seconds //60 #convert to minutes
 	if minutes > 90:
@@ -101,55 +84,30 @@ def ledtimebb():
 		pixels[0] = (0, 255, 0)
 	elif minutes == 6:
 		pixels.fill((0,0,0))
-		pixels[0] = (0, 255, 0)
 		pixels[1] = (0, 255, 0)
 	elif minutes == 5:
 		pixels.fill((0,0,0))
-		pixels[0] = (0, 255, 0)
-		pixels[1] = (0, 255, 0)
 		pixels[2] = (0, 255, 0)
 	elif minutes == 4:
 		pixels.fill((0,0,0))
-		pixels[0] = (0, 255, 0)
-		pixels[1] = (0, 255, 0)
-		pixels[2] = (0, 255, 0)
 		pixels[3] = (0, 255, 0)
 	elif minutes == 3:
 		pixels.fill((0,0,0))
-		pixels[0] = (0, 255, 0)
-		pixels[1] = (0, 255, 0)
-		pixels[2] = (0, 255, 0)
-		pixels[3] = (0, 255, 0)
 		pixels[4] = (0, 255, 0)
 	elif minutes == 2:
 		pixels.fill((0,0,0))
-		pixels[0] = (0, 255, 0)
-		pixels[1] = (0, 255, 0)
-		pixels[2] = (0, 255, 0)
-		pixels[3] = (0, 255, 0)
-		pixels[4] = (0, 255, 0)
 		pixels[5] = (0, 255, 0)
 	elif minutes == 1:
 		pixels.fill((0,0,0))
-		pixels[0] = (0, 255, 0)
-		pixels[1] = (0, 255, 0)
-		pixels[2] = (0, 255, 0)
-		pixels[3] = (0, 255, 0)
-		pixels[4] = (0, 255, 0)
-		pixels[5] = (0, 255, 0)
 		pixels[6] = (0, 255, 0)
-		pixels[7] = (0, 255, 0)
 	else:
-		above = data['response'][0]['duration']
-		end_above = time.time() + above
-		while time.time() < end_above:
+		above = data['response'][0]['duration'] ##how long ISS is overhead
+		end_above = time.time() + above  ##add that amount to the current time to get the endtime of the ISS overhead pass
+		while time.time() < end_above:   
 			pixels.fill((0,0,0))
 			rainbow_cycle(0.00) #make rainbow while overhead
-	
-	print('minutes')
-	print( minutes)
 
 while True: 
 	ledtimebb()
-	time.sleep(60)
+	time.sleep(60) 
 
