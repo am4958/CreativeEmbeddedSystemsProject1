@@ -48,9 +48,9 @@ def rainbow_cycle(wait):
 ####end from neo pixels site https://learn.adafruit.com/neopixels-on-raspberry-pi/python-usage
 
 ###found this method to help print json nicer on https://www.dataquest.io/blog/python-api-tutorial/ Great for testing code
-#def jprint(obj):
-#	text = json.dumps(obj, sort_keys=True, indent = 4) ####REMOVE LATER
-#	print(text)
+def jprint(obj):
+	text = json.dumps(obj, sort_keys=True, indent = 4) ####REMOVE LATER
+	print(text)
 ###ends here
 
 def ledtimebb():
