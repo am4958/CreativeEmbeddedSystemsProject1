@@ -11,7 +11,7 @@ import requests
 from datetime import datetime, timedelta
 pixels = neopixel.NeoPixel(board.D18,8)
 num_pixels = 8
-
+time.sleep(30)
 ORDER = neopixel.RGB
 
 ####from neopixels site untill.....
