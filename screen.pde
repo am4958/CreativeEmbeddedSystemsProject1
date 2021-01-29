@@ -26,12 +26,8 @@ void circ(){
  
    if (size <= stopSize){
       grow = false;
-      print("grow :circ" + grow);
       fly = true;
-      print("fly: circ" + fly);
       sizeSpeed *= -1;
-      //randos();
-      //grow = true;
     }  
 }
 
@@ -70,9 +66,7 @@ void flyTime(){
      if (randosY[4] <= 0) {
         fly = false;
         randos();
-        print("fly: flittime" + fly);
         grow = true;
-        print ("grow: flytime" + grow);
       } 
    }
 }
@@ -80,7 +74,6 @@ void flyTime(){
 void setup(){
   fullScreen();
   randos();
-  //printArray(PFont.list());
   font = createFont("Helvetica", 100);
   textFont(font); 
 }
