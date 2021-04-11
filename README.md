@@ -1,5 +1,5 @@
 
-#Mindfulness Moment
+Mindfulness Moment
 
 
 The Idea: This installation is aims to provide a moment of mindfulness for anyone who happens to see it. Using the Open Notify API, it tracks the overhead flight patterns of the International Space Station and lights up an LED ring of 8 Neopixels in accordance with its position relative to your location. Additionally, the mindfulness-centered Processing script starts full screen on boot to be displayed in a window alongside the LEDs as they countdown until the next time the ISS is overhead!
